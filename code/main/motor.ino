@@ -9,8 +9,8 @@
 // Variable to map the position in degrees with the analog values given by the position sensor
 #define MINPOSLIMIT 0.0f //degrees
 #define MAXPOSLIMIT 90.0f //degrees
-int adc_out_min_limit;
-int adc_out_max_limit;
+int adc_out_min_limit = 290;
+int adc_out_max_limit = 490;
 
 
 // Variables to map motor frame with sensor frame
