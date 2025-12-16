@@ -9,8 +9,8 @@
 // Variable to map the position in degrees with the analog values given by the position sensor
 #define MINPOSLIMIT 0.0f //degrees
 #define MAXPOSLIMIT 90.0f //degrees
-int adc_out_min_limit = 290;
-int adc_out_max_limit = 490;
+int adc_out_min_limit;
+int adc_out_max_limit;
 
 
 // Variables to map motor frame with sensor frame
@@ -60,19 +60,21 @@ void DisableMotor(){
  */
 void CalibratePositionSensor(void){
   DisableMotor();
-  Serial.println("Move the EduExo to 0 degrees. Press C to continue");
+  Serial.println("Move the EduExo to 0 degrees. Press c to continue");
   while (Serial.available() == 0);
-  if (Serial.read() == 'C' || Serial.read() == 'c') {
+  if (Serial.read() == 'c') {
     adc_out_min_limit = analogRead(MOTORANALOGPIN);
-    Serial.println("Move the EduExo to 90 degrees. Press C to continue");
+    Serial.println("Move the EduExo to 90 degrees. Press c to continue");
+    Serial.println(adc_out_min_limit);
     while (Serial.available() == 0);
-    if (Serial.read() == 'C' || Serial.read() == 'c') {
+    if (Serial.read() == 'c') {
       adc_out_max_limit = analogRead(MOTORANALOGPIN);
       Serial.println("Position sensor calibrated!");
+      Serial.println(adc_out_max_limit);
     }
-    else Serial.println("Exit from calibration");
+    else Serial.println("Exit from calibration1");
   }
-  else Serial.println("Exit from calibration");
+  else Serial.println("Exit from calibration2");
 }
 
 /*
